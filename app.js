@@ -28,6 +28,7 @@ function asNumber(value) {
 
 function renderResult(name, metrics, note = "") {
   const container = document.querySelector(`[data-result="${name}"]`);
+  if (!container) return;
   container.innerHTML = `
     ${metrics
       .map(
@@ -171,13 +172,87 @@ function calculateWedding(form) {
   );
 }
 
+function calculateVat(form) {
+  const amount = asNumber(form.amount.value);
+  const mode = form.mode.value;
+  const supply = mode === "included" ? amount / 1.1 : amount;
+  const vat = supply * 0.1;
+  const total = supply + vat;
+
+  renderResult(
+    "vat",
+    [
+      { label: "공급가액", value: won.format(supply) },
+      { label: "부가세", value: won.format(vat) },
+      { label: "합계", value: won.format(total) },
+    ],
+    "일반적인 10% 부가세 기준입니다. 면세, 영세율, 업종별 예외는 반영하지 않습니다.",
+  );
+}
+
+function calculateDiscount(form) {
+  const original = asNumber(form.original.value);
+  const sale = asNumber(form.sale.value);
+  const saved = Math.max(0, original - sale);
+  const rate = original > 0 ? (saved / original) * 100 : 0;
+
+  renderResult(
+    "discount",
+    [
+      { label: "할인율", value: `${number.format(rate)}%` },
+      { label: "절약 금액", value: won.format(saved) },
+      { label: "판매가", value: won.format(sale) },
+    ],
+    "쿠폰, 배송비, 적립금은 제외한 단순 판매가 기준 계산입니다.",
+  );
+}
+
+function calculateSplit(form) {
+  const total = asNumber(form.total.value);
+  const people = Math.max(1, Math.round(asNumber(form.people.value)));
+  const roundUnit = Math.max(1, Math.round(asNumber(form.roundUnit.value)));
+  const exact = total / people;
+  const rounded = Math.ceil(exact / roundUnit) * roundUnit;
+  const overage = rounded * people - total;
+
+  renderResult(
+    "split",
+    [
+      { label: "정확한 1인 금액", value: won.format(exact) },
+      { label: "올림 적용 1인 금액", value: won.format(rounded) },
+      { label: "남는 금액", value: won.format(overage) },
+    ],
+    "송금 편의를 위해 반올림 단위는 보통 10원, 100원, 1000원으로 맞춥니다.",
+  );
+}
+
+function calculateArea(form) {
+  const input = asNumber(form.area.value);
+  const unit = form.unit.value;
+  const sqm = unit === "pyeong" ? input * 3.305785 : input;
+  const pyeong = unit === "sqm" ? input / 3.305785 : input;
+
+  renderResult(
+    "area",
+    [
+      { label: "제곱미터", value: `${number.format(sqm)}㎡` },
+      { label: "평", value: `${number.format(pyeong)}평` },
+    ],
+    "1평 = 3.305785㎡ 기준입니다. 부동산 표기는 전용면적과 공급면적을 구분해 확인하세요.",
+  );
+}
+
 const calculators = {
   loan: calculateLoan,
   savings: calculateSavings,
   unit: calculateUnit,
+  vat: calculateVat,
+  discount: calculateDiscount,
   car: calculateCar,
   subscriptions: calculateSubscriptions,
   wedding: calculateWedding,
+  split: calculateSplit,
+  area: calculateArea,
   date: calculateDate,
 };
 
