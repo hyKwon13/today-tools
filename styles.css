@@ -216,11 +216,59 @@ h1 {
 
 .trust-strip span,
 .tool p,
-.growth p,
+.tips p,
 .notice p,
 footer {
   color: var(--muted);
   line-height: 1.65;
+}
+
+.ad-banner {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  border: 1px solid #d7c8b2;
+  border-radius: 8px;
+  padding: 18px 20px;
+  background: #fff8ea;
+  box-shadow: 0 10px 26px rgba(216, 165, 54, 0.12);
+}
+
+.ad-banner span,
+.ad-card span {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 4px 8px;
+  background: rgba(27, 29, 31, 0.08);
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.ad-banner strong,
+.ad-card strong {
+  display: block;
+  color: var(--ink);
+  font-size: 1.08rem;
+}
+
+.ad-banner p,
+.ad-card p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.ad-banner a,
+.ad-card a {
+  justify-self: end;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 800;
 }
 
 .tool-grid {
@@ -228,6 +276,24 @@ footer {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
   padding: 48px 0 70px;
+}
+
+.section-heading {
+  padding: 70px 0 0;
+}
+
+.section-heading h2,
+.tips h2 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.section-heading p:last-child {
+  max-width: 620px;
+  color: var(--muted);
+  line-height: 1.65;
 }
 
 .tool {
@@ -242,11 +308,32 @@ footer {
 }
 
 .tool__header h2,
-.growth h2 {
+.tips h2 {
   margin: 0;
   font-size: clamp(1.7rem, 4vw, 3.2rem);
   line-height: 1.05;
   letter-spacing: 0;
+}
+
+.ad-card {
+  min-height: 240px;
+  display: grid;
+  align-content: center;
+  gap: 12px;
+  border: 1px dashed #d7c8b2;
+  border-radius: 8px;
+  padding: clamp(20px, 4vw, 30px);
+  background: #fff8ea;
+}
+
+.ad-card--warm {
+  border-color: #e0b9b2;
+  background: #fff5f2;
+}
+
+.ad-card a {
+  justify-self: start;
+  margin-top: 4px;
 }
 
 .tool__header p:last-child {
@@ -314,20 +401,20 @@ footer {
   font-size: 0.9rem;
 }
 
-.growth {
+.tips {
   display: grid;
   grid-template-columns: minmax(240px, 0.7fr) minmax(0, 1.3fr);
   gap: 28px;
   padding: 28px 0 44px;
 }
 
-.growth__cards {
+.tips__cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
 }
 
-.growth__cards article {
+.tips__cards article {
   border-top: 4px solid var(--yellow);
   padding-top: 18px;
 }
@@ -368,8 +455,8 @@ footer {
   .hero,
   .trust-strip,
   .tool-grid,
-  .growth,
-  .growth__cards {
+  .tips,
+  .tips__cards {
     display: block;
   }
 
@@ -382,10 +469,20 @@ footer {
   }
 
   .hero__visual,
+  .ad-banner,
   .trust-strip div,
   .tool,
-  .growth__cards article {
+  .ad-card,
+  .tips__cards article {
     margin-top: 14px;
+  }
+
+  .ad-banner {
+    grid-template-columns: 1fr;
+  }
+
+  .ad-banner a {
+    justify-self: start;
   }
 
   .trust-strip {
