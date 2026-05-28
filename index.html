@@ -25,6 +25,8 @@
       <nav aria-label="주요 계산기">
         <a href="#loan">대출</a>
         <a href="#savings">저축</a>
+        <a href="#car">자동차</a>
+        <a href="#subscriptions">구독료</a>
         <a href="#unit">단가</a>
         <a href="#date">D-day</a>
       </nav>
@@ -139,6 +141,90 @@
             <button class="button button--secondary" type="submit">비교</button>
           </form>
           <div class="result" data-result="unit"></div>
+        </article>
+
+        <article class="tool" id="car">
+          <div class="tool__header">
+            <p class="eyebrow">Car Cost</p>
+            <h2>자동차 월 유지비</h2>
+            <p>할부, 보험, 연료, 주차비를 합쳐 매달 나가는 차량 비용을 봅니다.</p>
+          </div>
+          <form class="calculator" data-calculator="car">
+            <label>
+              월 할부금
+              <input name="payment" inputmode="numeric" value="420000" />
+            </label>
+            <label>
+              월 보험료
+              <input name="insurance" inputmode="numeric" value="90000" />
+            </label>
+            <label>
+              월 연료비
+              <input name="fuel" inputmode="numeric" value="180000" />
+            </label>
+            <label>
+              주차/정비비
+              <input name="misc" inputmode="numeric" value="80000" />
+            </label>
+            <button class="button button--secondary" type="submit">계산</button>
+          </form>
+          <div class="result" data-result="car"></div>
+        </article>
+
+        <article class="tool" id="subscriptions">
+          <div class="tool__header">
+            <p class="eyebrow">Subscriptions</p>
+            <h2>구독료 합산</h2>
+            <p>OTT, 음악, 앱, 멤버십처럼 작게 새는 월 구독료를 합산합니다.</p>
+          </div>
+          <form class="calculator" data-calculator="subscriptions">
+            <label>
+              OTT/영상
+              <input name="streaming" inputmode="numeric" value="17000" />
+            </label>
+            <label>
+              음악/오디오
+              <input name="music" inputmode="numeric" value="11000" />
+            </label>
+            <label>
+              앱/클라우드
+              <input name="apps" inputmode="numeric" value="22000" />
+            </label>
+            <label>
+              기타 멤버십
+              <input name="others" inputmode="numeric" value="15000" />
+            </label>
+            <button class="button button--secondary" type="submit">계산</button>
+          </form>
+          <div class="result" data-result="subscriptions"></div>
+        </article>
+
+        <article class="tool" id="wedding">
+          <div class="tool__header">
+            <p class="eyebrow">Wedding Budget</p>
+            <h2>결혼 예산 합산</h2>
+            <p>큰 항목을 먼저 더해 전체 예산의 감을 잡는 간단한 체크 계산기입니다.</p>
+          </div>
+          <form class="calculator" data-calculator="wedding">
+            <label>
+              예식/식대
+              <input name="venue" inputmode="numeric" value="18000000" />
+            </label>
+            <label>
+              촬영/드레스/메이크업
+              <input name="studio" inputmode="numeric" value="3500000" />
+            </label>
+            <label>
+              신혼여행
+              <input name="honeymoon" inputmode="numeric" value="6000000" />
+            </label>
+            <label>
+              가전/가구/기타
+              <input name="home" inputmode="numeric" value="12000000" />
+            </label>
+            <button class="button button--secondary" type="submit">계산</button>
+          </form>
+          <div class="result" data-result="wedding"></div>
         </article>
 
         <article class="tool" id="date">

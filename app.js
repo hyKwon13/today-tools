@@ -118,10 +118,66 @@ function calculateDate(form) {
   );
 }
 
+function calculateCar(form) {
+  const payment = asNumber(form.payment.value);
+  const insurance = asNumber(form.insurance.value);
+  const fuel = asNumber(form.fuel.value);
+  const misc = asNumber(form.misc.value);
+  const monthly = payment + insurance + fuel + misc;
+
+  renderResult(
+    "car",
+    [
+      { label: "월 예상 유지비", value: won.format(monthly) },
+      { label: "연간 예상 유지비", value: won.format(monthly * 12) },
+    ],
+    "세금, 감가상각, 사고 수리비는 제외한 생활비 관점의 단순 합산입니다.",
+  );
+}
+
+function calculateSubscriptions(form) {
+  const streaming = asNumber(form.streaming.value);
+  const music = asNumber(form.music.value);
+  const apps = asNumber(form.apps.value);
+  const others = asNumber(form.others.value);
+  const monthly = streaming + music + apps + others;
+
+  renderResult(
+    "subscriptions",
+    [
+      { label: "월 구독료 합계", value: won.format(monthly) },
+      { label: "연간 구독료", value: won.format(monthly * 12) },
+    ],
+    "작은 결제가 많을수록 연간 금액으로 보면 줄일 항목이 더 잘 보입니다.",
+  );
+}
+
+function calculateWedding(form) {
+  const venue = asNumber(form.venue.value);
+  const studio = asNumber(form.studio.value);
+  const honeymoon = asNumber(form.honeymoon.value);
+  const home = asNumber(form.home.value);
+  const total = venue + studio + honeymoon + home;
+  const buffer = total * 0.1;
+
+  renderResult(
+    "wedding",
+    [
+      { label: "예상 총예산", value: won.format(total) },
+      { label: "10% 여유 예산", value: won.format(buffer) },
+      { label: "여유 포함", value: won.format(total + buffer) },
+    ],
+    "업체 견적과 지역, 인원에 따라 실제 비용은 크게 달라질 수 있습니다.",
+  );
+}
+
 const calculators = {
   loan: calculateLoan,
   savings: calculateSavings,
   unit: calculateUnit,
+  car: calculateCar,
+  subscriptions: calculateSubscriptions,
+  wedding: calculateWedding,
   date: calculateDate,
 };
 
