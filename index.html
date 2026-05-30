@@ -35,6 +35,7 @@
         <a href="#savings">저축</a>
         <a href="#vat">부가세</a>
         <a href="#discount">할인</a>
+        <a href="#coffee">커피</a>
         <a href="#car">자동차</a>
         <a href="#subscriptions">구독료</a>
       </nav>
@@ -198,6 +199,26 @@
             <button class="button button--secondary" type="submit">계산</button>
           </form>
           <div class="result" data-result="discount"></div>
+        </article>
+
+        <article class="tool" id="coffee">
+          <div class="tool__header">
+            <p class="eyebrow">Coffee Cost</p>
+            <h2>커피 습관 비용</h2>
+            <p>자주 사 마시는 커피 비용을 주간, 월간, 연간 금액으로 확인합니다.</p>
+          </div>
+          <form class="calculator" data-calculator="coffee">
+            <label>
+              한 잔 가격
+              <input name="price" inputmode="numeric" value="4500" />
+            </label>
+            <label>
+              주간 구매 잔 수
+              <input name="cupsPerWeek" inputmode="numeric" value="5" />
+            </label>
+            <button class="button button--secondary" type="submit">계산</button>
+          </form>
+          <div class="result" data-result="coffee"></div>
         </article>
 
         <article class="tool" id="car">

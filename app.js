@@ -12,8 +12,11 @@ const today = new Date();
 const target = new Date(today);
 target.setMonth(target.getMonth() + 3);
 
-document.querySelector('input[name="start"]').value = toDateInput(today);
-document.querySelector('input[name="target"]').value = toDateInput(target);
+const startInput = document.querySelector('input[name="start"]');
+const targetInput = document.querySelector('input[name="target"]');
+
+if (startInput) startInput.value = toDateInput(today);
+if (targetInput) targetInput.value = toDateInput(target);
 
 function toDateInput(date) {
   const year = date.getFullYear();
@@ -207,6 +210,24 @@ function calculateDiscount(form) {
   );
 }
 
+function calculateCoffee(form) {
+  const price = asNumber(form.price.value);
+  const cupsPerWeek = Math.max(0, asNumber(form.cupsPerWeek.value));
+  const weekly = price * cupsPerWeek;
+  const monthly = weekly * (52 / 12);
+  const yearly = weekly * 52;
+
+  renderResult(
+    "coffee",
+    [
+      { label: "주간 커피 비용", value: won.format(weekly) },
+      { label: "월간 커피 비용", value: won.format(monthly) },
+      { label: "연간 커피 비용", value: won.format(yearly) },
+    ],
+    "월 환산은 1년 52주 기준(52/12)으로 계산한 참고값입니다.",
+  );
+}
+
 function calculateSplit(form) {
   const total = asNumber(form.total.value);
   const people = Math.max(1, Math.round(asNumber(form.people.value)));
@@ -248,6 +269,7 @@ const calculators = {
   unit: calculateUnit,
   vat: calculateVat,
   discount: calculateDiscount,
+  coffee: calculateCoffee,
   car: calculateCar,
   subscriptions: calculateSubscriptions,
   wedding: calculateWedding,
