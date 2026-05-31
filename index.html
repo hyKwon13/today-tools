@@ -36,6 +36,7 @@
         <a href="#vat">부가세</a>
         <a href="#discount">할인</a>
         <a href="#coffee">커피</a>
+        <a href="#meal">식비</a>
         <a href="#car">자동차</a>
         <a href="#subscriptions">구독료</a>
       </nav>
@@ -219,6 +220,30 @@
             <button class="button button--secondary" type="submit">계산</button>
           </form>
           <div class="result" data-result="coffee"></div>
+        </article>
+
+        <article class="tool" id="meal">
+          <div class="tool__header">
+            <p class="eyebrow">Meal Cost</p>
+            <h2>배달 vs 집밥 비용 비교</h2>
+            <p>한 끼 기준 비용과 주간 횟수로 월간 식비 차이를 가볍게 비교합니다.</p>
+          </div>
+          <form class="calculator" data-calculator="meal">
+            <label>
+              배달 1회 비용
+              <input name="deliveryCost" inputmode="numeric" value="18000" />
+            </label>
+            <label>
+              집밥 1회 비용
+              <input name="homeCost" inputmode="numeric" value="7000" />
+            </label>
+            <label>
+              주간 해당 식사 횟수
+              <input name="mealsPerWeek" inputmode="numeric" value="4" />
+            </label>
+            <button class="button button--secondary" type="submit">비교</button>
+          </form>
+          <div class="result" data-result="meal"></div>
         </article>
 
         <article class="tool" id="car">

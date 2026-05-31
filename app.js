@@ -228,6 +228,26 @@ function calculateCoffee(form) {
   );
 }
 
+function calculateMeal(form) {
+  const deliveryCost = Math.max(0, asNumber(form.deliveryCost.value));
+  const homeCost = Math.max(0, asNumber(form.homeCost.value));
+  const mealsPerWeek = Math.max(0, asNumber(form.mealsPerWeek.value));
+  const monthlyMultiplier = 52 / 12;
+  const monthlyDelivery = deliveryCost * mealsPerWeek * monthlyMultiplier;
+  const monthlyHome = homeCost * mealsPerWeek * monthlyMultiplier;
+  const monthlyGap = monthlyDelivery - monthlyHome;
+
+  renderResult(
+    "meal",
+    [
+      { label: "월 배달 식비", value: won.format(monthlyDelivery) },
+      { label: "월 집밥 식비", value: won.format(monthlyHome) },
+      { label: "월 비용 차이", value: won.format(monthlyGap) },
+    ],
+    "횟수와 평균 금액만으로 계산한 참고값입니다. 배달팁, 할인, 장보기 변동은 제외됩니다.",
+  );
+}
+
 function calculateSplit(form) {
   const total = asNumber(form.total.value);
   const people = Math.max(1, Math.round(asNumber(form.people.value)));
@@ -270,6 +290,7 @@ const calculators = {
   vat: calculateVat,
   discount: calculateDiscount,
   coffee: calculateCoffee,
+  meal: calculateMeal,
   car: calculateCar,
   subscriptions: calculateSubscriptions,
   wedding: calculateWedding,
