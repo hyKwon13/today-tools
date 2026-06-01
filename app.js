@@ -248,6 +248,25 @@ function calculateMeal(form) {
   );
 }
 
+function calculateTrip(form) {
+  const transport = Math.max(0, asNumber(form.transport.value));
+  const stay = Math.max(0, asNumber(form.stay.value));
+  const food = Math.max(0, asNumber(form.food.value));
+  const activity = Math.max(0, asNumber(form.activity.value));
+  const total = transport + stay + food + activity;
+  const buffer = total * 0.1;
+
+  renderResult(
+    "trip",
+    [
+      { label: "예상 총예산", value: won.format(total) },
+      { label: "10% 여유 금액", value: won.format(buffer) },
+      { label: "여유 포함 예산", value: won.format(total + buffer) },
+    ],
+    "여행 시기, 환율, 수하물/보험/쇼핑 비용은 제외한 단순 체크 계산입니다.",
+  );
+}
+
 function calculateSplit(form) {
   const total = asNumber(form.total.value);
   const people = Math.max(1, Math.round(asNumber(form.people.value)));
@@ -291,6 +310,7 @@ const calculators = {
   discount: calculateDiscount,
   coffee: calculateCoffee,
   meal: calculateMeal,
+  trip: calculateTrip,
   car: calculateCar,
   subscriptions: calculateSubscriptions,
   wedding: calculateWedding,
