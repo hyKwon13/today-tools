@@ -267,6 +267,26 @@ function calculateTrip(form) {
   );
 }
 
+function calculateEmergency(form) {
+  const monthlyExpense = Math.max(0, asNumber(form.monthlyExpense.value));
+  const currentFund = Math.max(0, asNumber(form.currentFund.value));
+  const months = Math.max(1, Math.round(asNumber(form.months.value)));
+  const minimumTarget = monthlyExpense * 3;
+  const recommendedTarget = monthlyExpense * 6;
+  const remaining = Math.max(0, recommendedTarget - currentFund);
+  const monthlySaving = remaining / months;
+
+  renderResult(
+    "emergency",
+    [
+      { label: "최소 비상금(3개월)", value: won.format(minimumTarget) },
+      { label: "권장 비상금(6개월)", value: won.format(recommendedTarget) },
+      { label: "월 적립 목표", value: won.format(monthlySaving) },
+    ],
+    "실직/질병 같은 소득 공백 대비를 위한 참고 계산입니다. 개인 고정비와 가족 상황을 함께 반영해 조정하세요.",
+  );
+}
+
 function calculateSplit(form) {
   const total = asNumber(form.total.value);
   const people = Math.max(1, Math.round(asNumber(form.people.value)));
@@ -311,6 +331,7 @@ const calculators = {
   coffee: calculateCoffee,
   meal: calculateMeal,
   trip: calculateTrip,
+  emergency: calculateEmergency,
   car: calculateCar,
   subscriptions: calculateSubscriptions,
   wedding: calculateWedding,

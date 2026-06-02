@@ -38,6 +38,7 @@
         <a href="#coffee">커피</a>
         <a href="#meal">식비</a>
         <a href="#trip">여행</a>
+        <a href="#emergency">비상금</a>
         <a href="#car">자동차</a>
         <a href="#subscriptions">구독료</a>
       </nav>
@@ -273,6 +274,30 @@
             <button class="button button--secondary" type="submit">계산</button>
           </form>
           <div class="result" data-result="trip"></div>
+        </article>
+
+        <article class="tool" id="emergency">
+          <div class="tool__header">
+            <p class="eyebrow">Emergency Fund</p>
+            <h2>비상금 목표 계산</h2>
+            <p>월 생활비 기준으로 권장 비상금 범위와 월 적립 목표를 계산합니다.</p>
+          </div>
+          <form class="calculator" data-calculator="emergency">
+            <label>
+              월 생활비
+              <input name="monthlyExpense" inputmode="numeric" value="2200000" />
+            </label>
+            <label>
+              현재 비상금
+              <input name="currentFund" inputmode="numeric" value="3000000" />
+            </label>
+            <label>
+              목표 기간(개월)
+              <input name="months" inputmode="numeric" value="12" />
+            </label>
+            <button class="button button--secondary" type="submit">계산</button>
+          </form>
+          <div class="result" data-result="emergency"></div>
         </article>
 
         <article class="tool" id="car">
