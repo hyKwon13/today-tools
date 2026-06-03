@@ -287,6 +287,26 @@ function calculateEmergency(form) {
   );
 }
 
+function calculateMoving(form) {
+  const movingService = Math.max(0, asNumber(form.movingService.value));
+  const cleaning = Math.max(0, asNumber(form.cleaning.value));
+  const broker = Math.max(0, asNumber(form.broker.value));
+  const setup = Math.max(0, asNumber(form.setup.value));
+  const disposal = Math.max(0, asNumber(form.disposal.value));
+  const total = movingService + cleaning + broker + setup + disposal;
+  const setupEtc = setup + disposal;
+
+  renderResult(
+    "moving",
+    [
+      { label: "예상 총 이사비", value: won.format(total) },
+      { label: "설치/정리 비용", value: won.format(setupEtc) },
+      { label: "예비비 10%", value: won.format(total * 0.1) },
+    ],
+    "사다리차, 엘리베이터 사용료, 보관이사, 주소 이전 수수료 같은 추가 비용은 별도로 확인하세요.",
+  );
+}
+
 function calculateSplit(form) {
   const total = asNumber(form.total.value);
   const people = Math.max(1, Math.round(asNumber(form.people.value)));
@@ -332,6 +352,7 @@ const calculators = {
   meal: calculateMeal,
   trip: calculateTrip,
   emergency: calculateEmergency,
+  moving: calculateMoving,
   car: calculateCar,
   subscriptions: calculateSubscriptions,
   wedding: calculateWedding,
