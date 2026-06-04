@@ -307,6 +307,26 @@ function calculateMoving(form) {
   );
 }
 
+function calculateStarter(form) {
+  const bedding = Math.max(0, asNumber(form.bedding.value));
+  const kitchen = Math.max(0, asNumber(form.kitchen.value));
+  const bathLaundry = Math.max(0, asNumber(form.bathLaundry.value));
+  const cleaning = Math.max(0, asNumber(form.cleaning.value));
+  const buffer = Math.max(0, asNumber(form.buffer.value));
+  const essentials = bedding + kitchen + bathLaundry + cleaning;
+  const total = essentials + buffer;
+
+  renderResult(
+    "starter",
+    [
+      { label: "기본 준비비", value: won.format(essentials) },
+      { label: "예비비 포함", value: won.format(total) },
+      { label: "추가 구매 비중", value: `${number.format(total > 0 ? (buffer / total) * 100 : 0)}%` },
+    ],
+    "가전, 보증금, 월세, 인터넷 설치비는 제외한 생활용품 기준의 간단한 준비비 체크입니다.",
+  );
+}
+
 function calculateSplit(form) {
   const total = asNumber(form.total.value);
   const people = Math.max(1, Math.round(asNumber(form.people.value)));
@@ -353,6 +373,7 @@ const calculators = {
   trip: calculateTrip,
   emergency: calculateEmergency,
   moving: calculateMoving,
+  starter: calculateStarter,
   car: calculateCar,
   subscriptions: calculateSubscriptions,
   wedding: calculateWedding,

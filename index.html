@@ -39,6 +39,7 @@
         <a href="#meal">식비</a>
         <a href="#trip">여행</a>
         <a href="#moving">이사</a>
+        <a href="#starter">자취</a>
         <a href="#emergency">비상금</a>
         <a href="#car">자동차</a>
         <a href="#subscriptions">구독료</a>
@@ -331,6 +332,38 @@
             <button class="button button--secondary" type="submit">계산</button>
           </form>
           <div class="result" data-result="moving"></div>
+        </article>
+
+        <article class="tool" id="starter">
+          <div class="tool__header">
+            <p class="eyebrow">Starter Setup</p>
+            <h2>자취 시작 준비비 체크</h2>
+            <p>침구, 주방, 욕실, 청소용품처럼 처음 자취할 때 필요한 기본 준비비를 합산합니다.</p>
+          </div>
+          <form class="calculator" data-calculator="starter">
+            <label>
+              침구/가구
+              <input name="bedding" inputmode="numeric" value="300000" />
+            </label>
+            <label>
+              주방용품
+              <input name="kitchen" inputmode="numeric" value="180000" />
+            </label>
+            <label>
+              욕실/세탁
+              <input name="bathLaundry" inputmode="numeric" value="120000" />
+            </label>
+            <label>
+              청소/정리
+              <input name="cleaning" inputmode="numeric" value="90000" />
+            </label>
+            <label>
+              예비비/추가 구매
+              <input name="buffer" inputmode="numeric" value="100000" />
+            </label>
+            <button class="button button--secondary" type="submit">계산</button>
+          </form>
+          <div class="result" data-result="starter"></div>
         </article>
 
         <article class="tool" id="car">
